@@ -1,0 +1,41 @@
+name: Release Charts
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
+      - name: Package chart
+        run: |
+          mkdir -p packages
+          helm package . -d packages/
+
+      - name: Generate index
+        run: |
+          if [ -f packages/index.yaml ]; then
+            helm repo index packages --merge packages/index.yaml --url https://regret-io.github.io/regret-charts
+          else
+            helm repo index packages --url https://regret-io.github.io/regret-charts
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: packages
+          keep_files: true

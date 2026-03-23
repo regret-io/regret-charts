@@ -3,12 +3,12 @@ entries:
   regret:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2026-03-23T10:44:55.100046165Z"
+    created: "2026-03-23T10:49:59.180145342Z"
     description: Regret — distributed system correctness testing tool
-    digest: 831e4aebbda5321035f0f2bdf8c09d633df69c85ec66848deac03347a0d810c3
+    digest: d96e4423c161515fe14b49ac3596837345d078cf4cf37d0c22ee53fe9c7cfbc3
     name: regret
     type: application
     urls:
     - https://regret-io.github.io/regret-charts/regret-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-23T10:44:55.098322128Z"
+generated: "2026-03-23T10:49:59.179064879Z"
